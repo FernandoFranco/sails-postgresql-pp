@@ -2,16 +2,18 @@
 
 # PostgreSQL Sails/Waterline Adapter
 
-[![Build Status](https://travis-ci.org/balderdashy/sails-postgresql.png?branch=master)](https://travis-ci.org/balderdashy/sails-postgresql) [![NPM version](https://badge.fury.io/js/sails-postgresql.png)](http://badge.fury.io/js/sails-postgresql)
+[![Build Status](https://travis-ci.org/FernandoFranco/sails-postgresql-pp.svg?branch=master)](https://travis-ci.org/FernandoFranco/sails-postgresql-pp)
+[![NPM version](https://badge.fury.io/js/sails-postgresql-pp.png)](http://badge.fury.io/js/sails-postgresql-pp)
 
 A [Waterline](https://github.com/balderdashy/waterline) adapter for PostgreSQL. May be used in a [Sails](https://github.com/balderdashy/sails) app or anything using Waterline for the ORM.
+This is a modified branch of the [sails-postgresql v0.11.4](https://github.com/balderdashy/sails-postgresql/tree/0.11.x)
 
 ## Install
 
 Install is through NPM.
 
 ```bash
-$ npm install sails-postgresql
+$ npm install sails-postgresql-pp
 ```
 
 ## Configuration
@@ -66,6 +68,14 @@ module.exports = Waterline.Collection.extend({
   attributes: {
     name: 'string'
   }
+});
+```
+
+You can change schema name with a similar code:
+```javascript
+Model.metas({schemaName: 'bar'}).find().exec(function (err, records) {
+  if (err) console.error(err);
+  console.log('Middleware :: ', records);
 });
 ```
 

@@ -1,12 +1,13 @@
 language: node_js
 node_js:
+  - "6.10"
   - "5.0"
   - "4.0"
   - "0.12"
   - "0.10"
-services: postgresql
+services: postgresql-pp
 addons:
-  postgresql: "9.4"
+  postgresql-pp: "9.4"
 sudo: false
 env:
   - DB_USER=postgres DB_PASS=''
@@ -16,4 +17,4 @@ before_script:
   - psql -c 'create database sailspg;' -U postgres
 notifications:
   email:
-    - particlebanana@gmail.com
+    - atr.franco@gmail.com
