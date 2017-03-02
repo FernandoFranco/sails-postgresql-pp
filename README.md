@@ -3,7 +3,7 @@
 # PostgreSQL Sails/Waterline Adapter
 
 [![Build Status](https://travis-ci.org/FernandoFranco/sails-postgresql-pp.svg?branch=master)](https://travis-ci.org/FernandoFranco/sails-postgresql-pp)
-[![NPM version](https://badge.fury.io/js/sails-postgresql-pp.png)](http://badge.fury.io/js/sails-postgresql-pp)
+[![npm version](https://badge.fury.io/js/sails-postgresql-pp.svg)](https://badge.fury.io/js/sails-postgresql-pp)
 
 A [Waterline](https://github.com/balderdashy/waterline) adapter for PostgreSQL. May be used in a [Sails](https://github.com/balderdashy/sails) app or anything using Waterline for the ORM.
 This is a modified branch of the [sails-postgresql v0.11.4](https://github.com/balderdashy/sails-postgresql/tree/0.11.x)
