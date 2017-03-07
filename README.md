@@ -71,11 +71,40 @@ module.exports = Waterline.Collection.extend({
 });
 ```
 
+## Change Model Schema in runtime
+
 You can change schema name with a similar code:
+
 ```javascript
 Model.metas({schemaName: 'bar'}).find().exec(function (err, records) {
-  if (err) console.error(err);
-  console.log('Middleware :: ', records);
+  if (err) return console.error(err);
+  console.log('Change Schema :: ', records);
+});
+```
+
+## Clone Schema Tables in new or existing Schema
+
+You can clone a specific model like this:
+
+```javascript
+Model.cloneToSchema({newSchema: 'bar'}).exec(function (err, records) {
+  if (err) return console.error(err);
+  console.log('Clone Schema Success :: ', records);
+});
+```
+
+Or yout clone all tables in the schema like this:
+
+```javascript
+var sailsPostgreSqlPpAdapter = sails.adapters['sails-postgresql-pp'];
+var sailsConfigModelsConnection = sails.config.models.connection;
+
+sailsPostgreSqlPpAdapter.cloneToSchema(sailsConfigModelsConnection, null, {
+  oldSchema: 'foo',
+  newSchema: 'bar'
+}, function (err, resolve) {
+  if (err) return console.error(err);
+  console.log('Clone Schema Success :: ', { oldSchema: 'foo', newSchema: 'bar'});
 });
 ```
 
