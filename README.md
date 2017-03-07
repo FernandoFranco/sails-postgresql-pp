@@ -82,6 +82,39 @@ Model.metas({schemaName: 'bar'}).find().exec(function (err, records) {
 });
 ```
 
+You can change Schema with Sails Blueprints with a override parseModel like this in the 'config/bootstrap.js'
+
+```javascript
+if (!actionUtil || !actionUtil.parseModel) {
+  throw new Error('Blueprints :: ActionUtil :: ParseModel', 'Not Found');
+}
+actionUtil.parseModel = function parseModelService(req) {
+
+  // Ensure a model can be deduced from the request options.
+  var model = req.options.model || req.options.controller;
+  if (!model) throw new Error(util.format('No "model" specified in route options.'));
+
+  var Model = req._sails.models[model];
+  if (!Model) throw new Error(util.format('Invalid route option, "model".\nI don\'t know about any models named: `%s`', model));
+
+  if (!Model.metas) {
+    throw new Error(util.format('Model named: `%s` metas function not exists', model));
+  }
+
+  return Model.metas({
+    schemaName: function schemaChange(req) {
+      // Check logged user
+      if (!req.user) {
+        return 'foo'; // Default schema
+      }
+
+      // Callback the user company schema name
+      return req.user.company.schemaName;
+    }
+  });
+};
+```
+
 ## Clone Schema Tables in new or existing Schema
 
 You can clone a specific model like this:
